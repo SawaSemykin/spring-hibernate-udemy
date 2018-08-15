@@ -22,7 +22,7 @@ public class ReadStudentDemo {
 		try {
 			// create a student object
 			System.out.println("Creating new student object...");
-			Student tempStudent = new Student("Daffy", "Duck", "daffy@luv2code.com");
+			Student tempStudent = new Student("Daffy", "Duck", "daffy@luv2code.com", DateUtils.parseDate("01/09/1970"));
 			
 			// start a transaction
 			session.beginTransaction();
@@ -54,6 +54,8 @@ public class ReadStudentDemo {
 			session.getTransaction().commit();
 			
 			System.out.println("Done!");
+		} catch (Exception exc) {
+			exc.printStackTrace();
 		}
 		finally {
 			factory.close();
