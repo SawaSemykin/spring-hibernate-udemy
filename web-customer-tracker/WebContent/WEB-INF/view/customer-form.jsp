@@ -29,6 +29,9 @@
 		
 		<form:form action="saveCustomer" modelAttribute="customer" method="POST">
 		
+			<!-- need to associate this data with customer id -->
+			<form:hidden path="id"/>
+		
 			<table>
 				<tbody>
 					<tr>
@@ -38,7 +41,7 @@
 					
 					<tr>
 						<td><label>Last name:</label></td>
-						<td><form:input path="LastName"/></td>
+						<td><form:input path="lastName"/></td>
 					</tr>
 					
 					<tr>
