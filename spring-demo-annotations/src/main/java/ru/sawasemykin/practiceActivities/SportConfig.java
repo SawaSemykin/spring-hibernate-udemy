@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import com.luv2code.springdemo.Coach;
 import com.luv2code.springdemo.FortuneService;
 
-@Configuration
+@Configuration("mySportConfig")
 public class SportConfig {
 	
 	@Bean

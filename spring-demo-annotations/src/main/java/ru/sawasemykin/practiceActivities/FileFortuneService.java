@@ -1,8 +1,7 @@
 package ru.sawasemykin.practiceActivities;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
@@ -26,17 +25,18 @@ public class FileFortuneService implements FortuneService {
 		return theFortune;
 	}
 	
-	// TODO switch to relative path
 	@PostConstruct
 	private void readFromFile() {
 		System.out.println(">> FileFortuneService: inside of readFromFile()");
-		try(BufferedReader reader =
-				new BufferedReader(new FileReader("/home/sawa/spring/spring-hibernate-udemy-repo/spring-demo-annotations/src/fortunes.txt"));){
+		try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream("fortunes.txt");
+			 InputStreamReader streamReader = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
+			 BufferedReader reader = new BufferedReader(streamReader)
+		) {
 			fortunes = reader.lines().collect(Collectors.toList());
-		} catch(IOException e) {
-			e.printStackTrace();
+		} catch (IOException ioe) {
+			ioe.printStackTrace();
 		}
-	}	
+	}
 	
 	/*
 	@PostConstruct 
